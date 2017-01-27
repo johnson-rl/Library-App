@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
+  root 'users#index'
+
+  resources :users
+
+  get '/users/new' => 'users#new'
 end
