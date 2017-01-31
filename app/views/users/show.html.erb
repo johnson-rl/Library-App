@@ -1,2 +1,3 @@
 Name: <%= @user.first_name+" "+@user.last_name %>
 Email: <%= @user.email%>
+Photo:  <%= image_tag @user.photo.thumb.url %>

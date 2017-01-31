@@ -1,3 +1,5 @@
+require 'slack-notifier'
+
 class UsersController < ApplicationController
 
   def index
@@ -21,6 +23,8 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     login(@user)
+    notifier = Slack::Notifier.new "https://hooks.slack.com/services/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"
+    notifier.ping "#{current_user.first_name} thinks that RJ is pretty awesome."
     redirect_to @user
   end
 
@@ -35,7 +39,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :photo)
   end
 
 end
